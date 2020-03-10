@@ -1,0 +1,50 @@
+I"�	<h2 id="environment">Environment</h2>
+<ul>
+  <li>OS : macOS Catalina 10.15.3</li>
+  <li>Jekyll : jekyll 4.0.0</li>
+  <li>Ruby : ruby 2.6.3p62</li>
+  <li>Bundler : Bundler version 2.1.4</li>
+  <li><a href="https://github.com/mmistakes/minimal-mistakes">Theme : Minimal-Mistakes</a></li>
+</ul>
+
+<h2 id="create-github-repository">Create GitHub Repository</h2>
+<h3 id="create-repository">Create Repository</h3>
+<ul>
+  <li>Repository name : {username}.github.io</li>
+  <li>공개 설정 : public</li>
+  <li>‘initialize this repository with a README’는 체크하지 않습니다.</li>
+</ul>
+
+<p><img src="http://localhost:4000/assets/images/2020/03/10-01-01.png" alt="alt" class="bordered" /></p>
+
+<ul>
+  <li>Repository 생성이 완료됩니다.</li>
+</ul>
+
+<p><img src="http://localhost:4000/assets/images/2020/03/10-01-02.png" alt="alt" class="bordered" /></p>
+
+<h3 id="clone-repository">Clone Repository</h3>
+<p>macOS에 GitHub Default Path인 ‘~/Document/GitHub’에서 git clone을 수행합니다.<br />
+해당 경로가 존재하지 않는다면 GitHub Desktop을 설치하거나 ‘mkdir’ 명령어로 직접 생성해도 됩니다.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~
+<span class="nb">cd </span>Document/GitHub
+git clone https://github.com/sdj7072/sdj7072.github.io.git
+</code></pre></div></div>
+<p>‘sdj7072.github.io’ repository가 복제된 것을 확인할 수 있습니다.<br />
+‘minimal-mistakes’ repository도 보이네요. :)
+<img src="http://localhost:4000/assets/images/2020/03/10-01-08.png" alt="alt" /></p>
+
+<h2 id="jekyll-theme--minimal-mistake">Jekyll Theme : minimal-mistake</h2>
+<p>Jekyll Theme 중에서 유명한 ‘<a href="https://mmistakes.github.io/minimal-mistakes/">minima-mistakes</a>’ Theme를 사용합니다.<br />
+아래 GitHub Repository에서 Clone 합니다.</p>
+<ul>
+  <li><a href="https://github.com/mmistakes/minimal-mistakes">GitHub:minimal-mistake</a></li>
+</ul>
+
+<p>이번에는 ‘Open in Desktop’ 버튼을 클릭하여 GitHub Desktop을 통해 clone을 수행합니다.
+<img src="http://localhost:4000/assets/images/2020/03/10-01-03.png" alt="alt" class="bordered" />
+<img src="http://localhost:4000/assets/images/2020/03/10-01-04.png" alt="alt" />
+<img src="http://localhost:4000/assets/images/2020/03/10-01-05.png" alt="alt" />
+<img src="http://localhost:4000/assets/images/2020/03/10-01-06.png" alt="alt" />
+<img src="http://localhost:4000/assets/images/2020/03/10-01-07.png" alt="alt" /></p>
+:ET

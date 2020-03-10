@@ -1,0 +1,13 @@
+I"x<h2 id="environment--tools">Environment &amp; Tools</h2>
+<ol>
+  <li>Environment
+    <ul>
+      <li>OS : macOS Catalina 10.15.3</li>
+      <li>Jekyll : jekyll 4.0.0</li>
+      <li>Ruby : ruby 2.6.3p62</li>
+      <li>Bundler : Bundler version 2.1.4</li>
+      <li><a href="https://github.com/mmistakes/minimal-mistakes">Theme : Minimal-Mistakes</a></li>
+    </ul>
+  </li>
+</ol>
+:ET
