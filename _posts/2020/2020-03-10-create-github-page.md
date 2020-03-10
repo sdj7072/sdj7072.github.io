@@ -1,6 +1,6 @@
 ---
-title: "GitHub Pages 만들기"
-date: "2020-03-10 12:48"
+title: GitHub Pages 만들기
+date: '2020-03-10 17:59'
 categories:
   - Layout
   - Uncategorized
@@ -9,10 +9,11 @@ tags:
   - image
   - layout
 toc: true
-toc_label: "GitHub Pages 만들기"
-toc_icon: "file-alt"
+toc_label: GitHub Pages 만들기
+toc_icon: file-alt
 toc_sticky: true
 ---
+
 ## 1. Environment & Tools
 1. Environment
 - OS : macOS Catalina 10.15.3
@@ -91,7 +92,7 @@ bundle install이 완료되면 'jekyll serve' 명령어로 로컬 환경에서 j
 ```bash
 jekyll serve
 ```
-- jekyll instance를 종료할 때는, terminal 화면에서 'ctrl + c' key를 누르면 됩니다.
+jekyll instance를 종료할 때는, terminal 화면에서 'ctrl + c' key를 누르면 됩니다.
 ![alt]({{ site.url }}{{ site.baseurl }}/assets/images/2020/03/10-01-06.png)
 
 로컬 환경에서 접속하면 정상적으로 화면이 뜨는 것을 볼 수 있습니다.(허전한데...?)
@@ -114,6 +115,8 @@ cp -r minimal-mistakes/* {folder_name}
 ### Push to GitHub Repository
 GitHub Desktop에서 Comment를 작성한 후, Commit을 수행합니다.
 ![alt]({{ site.url }}{{ site.baseurl }}/assets/images/2020/03/10-01-11.png)
+'Push origin' 버튼을 클릭하여 GitHub Repository로 Push 합니다.
+![alt]({{ site.url }}{{ site.baseurl }}/assets/images/2020/03/10-01-13.png)
 
 ### Test
 본인의 GitHub Pages URL로 접속하여 확인 가능합니다.

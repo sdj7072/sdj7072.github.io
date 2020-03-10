@@ -1,1 +1,128 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-03-10T17:54:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Site Title</title><subtitle>An amazing website.</subtitle><author><name>Your Name</name></author></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-03-10T18:00:10+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Site Title</title><subtitle>An amazing website.</subtitle><author><name>Your Name</name></author><entry><title type="html">GitHub Pages 만들기</title><link href="http://localhost:4000/layout/uncategorized/create-github-page/" rel="alternate" type="text/html" title="GitHub Pages 만들기" /><published>2020-03-10T17:59:00+09:00</published><updated>2020-03-10T17:59:00+09:00</updated><id>http://localhost:4000/layout/uncategorized/create-github-page</id><content type="html" xml:base="http://localhost:4000/layout/uncategorized/create-github-page/">&lt;h2 id=&quot;1-environment--tools&quot;&gt;1. Environment &amp;amp; Tools&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Environment
+    &lt;ul&gt;
+      &lt;li&gt;OS : macOS Catalina 10.15.3&lt;/li&gt;
+      &lt;li&gt;Jekyll : jekyll 4.0.0&lt;/li&gt;
+      &lt;li&gt;Bundler : Bundler version 2.1.4&lt;/li&gt;
+      &lt;li&gt;Ruby : ruby 2.6.3p62&lt;/li&gt;
+      &lt;li&gt;Homebrew : Homebrew 2.2.9&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Tools
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://desktop.github.com&quot;&gt;GitHub Desktop&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ETC
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes&quot;&gt;Theme : Minimal-Mistakes&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;2-사전-준비-사항&quot;&gt;2. 사전 준비 사항&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Jekyll, Bundler 설치가 필요합니다.&lt;/li&gt;
+  &lt;li&gt;Homebrew, Ruby 설치에 관해서는 본 Post에 기술하지 않았습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll bundler
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;3-create-github-repository&quot;&gt;3. Create GitHub Repository&lt;/h2&gt;
+&lt;h3 id=&quot;create-repository&quot;&gt;Create Repository&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Repository name : {username}.github.io&lt;/li&gt;
+  &lt;li&gt;공개 설정 : public&lt;/li&gt;
+  &lt;li&gt;‘initialize this repository with a README’는 체크하지 않습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-01.png&quot; alt=&quot;alt&quot; class=&quot;bordered&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Repository 생성이 완료됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-02.png&quot; alt=&quot;alt&quot; class=&quot;bordered&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;clone-repository&quot;&gt;Clone Repository&lt;/h3&gt;
+&lt;p&gt;macOS에 GitHub Default Path인 ‘~/Document/GitHub’에서 git clone을 수행합니다.&lt;br /&gt;
+해당 경로가 존재하지 않는다면 GitHub Desktop을 설치하거나 ‘mkdir’ 명령어로 직접 생성해도 됩니다.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;Document/GitHub
+git clone https://github.com/sdj7072/sdj7072.github.io.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;‘sdj7072.github.io’ repository가 복제된 것을 확인할 수 있습니다.&lt;br /&gt;
+‘minimal-mistakes’ repository도 보이네요. :)
+&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-08.png&quot; alt=&quot;alt&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;4-jekyll-theme--minimal-mistake&quot;&gt;4. Jekyll Theme : minimal-mistake&lt;/h2&gt;
+&lt;h3 id=&quot;clone-repository-1&quot;&gt;Clone Repository&lt;/h3&gt;
+&lt;p&gt;Jekyll Theme 중에서 유명한 ‘&lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/&quot;&gt;minima-mistakes&lt;/a&gt;’ Theme를 사용합니다.&lt;br /&gt;
+아래 GitHub Repository에서 Clone 합니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes&quot;&gt;GitHub:minimal-mistake&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;‘Open in Desktop’ 버튼을 클릭하여 GitHub Desktop을 통해 clone을 수행합니다.
+&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-03.png&quot; alt=&quot;alt&quot; class=&quot;bordered&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;GitHub Desktop으로 전환되어 git clone을 수행할지 물어봅니다.
+&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-04.png&quot; alt=&quot;alt&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;git clone이 완료되었습니다.
+&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-09.png&quot; alt=&quot;alt&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;local-test&quot;&gt;Local Test&lt;/h3&gt;
+&lt;p&gt;‘minimal-mistakes’ repository로 이동하여 GemFile에 정의된 Dependency Library를 설치합니다.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;Document/GitHub/minimal-mistakes
+bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-05.png&quot; alt=&quot;alt&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;bundle install이 완료되면 ‘jekyll serve’ 명령어로 로컬 환경에서 jekyll instance를 기동할 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;jekyll instance를 종료할 때는, terminal 화면에서 ‘ctrl + c’ key를 누르면 됩니다.
+&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-06.png&quot; alt=&quot;alt&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;로컬 환경에서 접속하면 정상적으로 화면이 뜨는 것을 볼 수 있습니다.(허전한데…?)&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;http://127.0.0.1:4000/&lt;br /&gt;
+http://localhost:4000/&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-07.png&quot; alt=&quot;alt&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;5-push-to-my-github-pages&quot;&gt;5. Push to My GitHub Pages&lt;/h2&gt;
+&lt;h3 id=&quot;copy-to-my-local-repository&quot;&gt;Copy to My Local Repository&lt;/h3&gt;
+&lt;p&gt;‘minimal-mistakes’ Repository를 본인의 GitHub Repository로 복사합니다.&lt;br /&gt;
+(Finder에서 복/붙 하는게 더 편한데…)&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;Document/GitHub
+&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; minimal-mistakes/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;folder_name&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-10.png&quot; alt=&quot;alt&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;push-to-github-repository&quot;&gt;Push to GitHub Repository&lt;/h3&gt;
+&lt;p&gt;GitHub Desktop에서 Comment를 작성한 후, Commit을 수행합니다.
+&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-11.png&quot; alt=&quot;alt&quot; /&gt;
+‘Push origin’ 버튼을 클릭하여 GitHub Repository로 Push 합니다.
+&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-13.png&quot; alt=&quot;alt&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;test&quot;&gt;Test&lt;/h3&gt;
+&lt;p&gt;본인의 GitHub Pages URL로 접속하여 확인 가능합니다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;http://sdj7072.github.io/&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/2020/03/10-01-12.png&quot; alt=&quot;alt&quot; class=&quot;bordered&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;notice--info&quot;&gt;
+[참고]
+&lt;br /&gt;&lt;a href=&quot;https://pages.github.com&quot;&gt;https://pages.github.com&lt;/a&gt;
+&lt;br /&gt;&lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes&quot;&gt;https://mmistakes.github.io/minimal-mistakes&lt;/a&gt;
+&lt;br /&gt;&lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes&quot;&gt;https://mmistakes.github.io/minimal-mistakes&lt;/a&gt;
+&lt;br /&gt;&lt;a href=&quot;http://jekyllrb-ko.github.io/&quot;&gt;http://jekyllrb-ko.github.io/&lt;/a&gt;
+&lt;/div&gt;</content><author><name>Your Name</name></author><category term="edge case" /><category term="image" /><category term="layout" /><summary type="html">1. Environment &amp;amp; Tools Environment OS : macOS Catalina 10.15.3 Jekyll : jekyll 4.0.0 Bundler : Bundler version 2.1.4 Ruby : ruby 2.6.3p62 Homebrew : Homebrew 2.2.9</summary></entry></feed>
