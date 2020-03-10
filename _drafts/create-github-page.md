@@ -101,15 +101,30 @@ jekyll serve
 ![alt]({{ site.url }}{{ site.baseurl }}/assets/images/2020/03/10-01-07.png)
 
 
-## 5. Copy to My repository
+## 5. Push to My GitHub Pages
+### Copy to My Local Repository
 'minimal-mistakes' Repository를 본인의 GitHub Repository로 복사합니다.  
+(Finder에서 복/붙 하는게 더 편한데...)
 ```bash
 cd Document/GitHub
 cp -r minimal-mistakes/* {folder_name}
 ```
 ![alt]({{ site.url }}{{ site.baseurl }}/assets/images/2020/03/10-01-10.png)
 
-<div>
-참고
+### Push to GitHub Repository
+GitHub Desktop에서 Comment를 작성한 후, Commit을 수행합니다.
+![alt]({{ site.url }}{{ site.baseurl }}/assets/images/2020/03/10-01-11.png)
 
+### Test
+본인의 GitHub Pages URL로 접속하여 확인 가능합니다.
+> http://sdj7072.github.io/
+
+![alt]({{ site.url }}{{ site.baseurl }}/assets/images/2020/03/10-01-12.png){: .bordered}
+
+<div>
+[참고]
+<br><a href="https://pages.github.com">https://pages.github.com</a>
+<br><a href="https://mmistakes.github.io/minimal-mistakes">https://mmistakes.github.io/minimal-mistakes</a>
+<br><a href="https://github.com/mmistakes/minimal-mistakes">https://mmistakes.github.io/minimal-mistakes</a>
+<br><a href="http://jekyllrb-ko.github.io/">http://jekyllrb-ko.github.io/</a>
 </div>{: .notice--info}
