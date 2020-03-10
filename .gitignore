@@ -4,6 +4,10 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 
-# macOS
+# Folder view configuration files
 .DS_Store
-.DS_Store?
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
