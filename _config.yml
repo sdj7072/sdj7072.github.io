@@ -20,8 +20,8 @@ locale                   : "co-KR"
 title                    : "Star Seeker"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "J"
-description              : "An amazing website."
+name                     : "J. Seo"
+description              : "Try Everything"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -108,15 +108,15 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "J. Seo"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
+  bio              : "Try Everything."
+  location         : "Seoul, Korea"
   email            :
   links:
-    - label: "Email"
+    - label: "GMAIL"
       icon: "fas fa-fw fa-envelope-square"
-      # url: mailto:your.name@email.com
+      url: mailto:sdj7072@gmail.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
