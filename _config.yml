@@ -114,7 +114,7 @@ author:
   location         : "대한민국 (South Korea)"
   email            :
   links:
-    - label: "GMAIL"
+    - label: "Gmail"
       icon: "fas fa-fw fa-envelope-square"
       url: mailto:sdj7072@gmail.com
     - label: "Website"
