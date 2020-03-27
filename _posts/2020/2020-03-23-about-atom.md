@@ -2,12 +2,9 @@
 title: Atom으로 Markdown Document 만들기
 date: '2020-03-23 15:31'
 categories:
-  - Layout
-  - Uncategorized
+  - GitHub Pages
 tags:
-  - edge case
-  - image
-  - layout
+  - ATOM
 toc: true
 toc_label: Atom으로 Markdown Document 만들기
 toc_icon: file-alt

@@ -2,12 +2,10 @@
 title: GitHub Pages 만들기
 date: '2020-03-10 17:59'
 categories:
-  - Layout
-  - Uncategorized
+  - GitHub Pages
 tags:
-  - edge case
-  - image
-  - layout
+  - Jekyll
+  - Minimal Mistakes
 toc: true
 toc_label: GitHub Pages 만들기
 toc_icon: file-alt

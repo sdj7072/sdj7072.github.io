@@ -1,11 +1,11 @@
 ---
-title: 'Google, Naver, Bing, Daum, Zum 검색 등록하기'
+title: 'Google, Naver, Bing, Daum, Zum 검색 엔진 등록하기'
 date: '2020-03-27 16:24'
 categories:
   - GitHub Pages
 tags:
   - sitemap.xml
-  - 검색 등록
+  - SEO
 toc: true
 toc_label: Table of contents
 toc_icon: file-alt
