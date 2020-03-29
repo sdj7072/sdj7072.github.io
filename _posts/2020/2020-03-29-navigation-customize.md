@@ -1,6 +1,6 @@
 ---
-title: "GitHub Pages Navigation 구성하기"
-date: "2020-03-29 11:44"
+title: GitHub Pages Navigation 구성하기
+date: '2020-03-29 17:29'
 categories:
   - GitHub Pages
 tags:
