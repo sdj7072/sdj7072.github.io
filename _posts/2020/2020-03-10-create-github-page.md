@@ -52,11 +52,13 @@ sudo gem install jekyll bundler
 ### Clone Repository
 macOS에 GitHub Default Path인 '~/Document/GitHub'에서 git clone을 수행합니다.  
 해당 경로가 존재하지 않는다면 GitHub Desktop을 설치하거나 'mkdir' 명령어로 직접 생성해도 됩니다.
-```bash
+
+{% highlight sh linenos %}
 cd ~
 cd Document/GitHub
 git clone https://github.com/sdj7072/sdj7072.github.io.git
-```
+{% endhighlight %}
+
 'sdj7072.github.io' repository가 복제된 것을 확인할 수 있습니다.  
 'minimal-mistakes' repository도 보이네요. :)
 ![alt]({{ site.url }}{{ site.baseurl }}/assets/images/2020/03/10-01-08.png)
