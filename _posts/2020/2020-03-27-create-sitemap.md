@@ -1,5 +1,5 @@
 ---
-title: 'Google, Naver, Bing, Daum, Zum 검색 엔진 등록하기'
+title: 'sitemap.xml을 생성하고 Google, Naver, Bing, Daum, Zum 검색 엔진 등록하기'
 date: '2020-03-27 16:24'
 categories:
   - GitHub Pages
