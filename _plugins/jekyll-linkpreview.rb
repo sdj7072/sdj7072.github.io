@@ -1,5 +1,8 @@
 require "digest"
 require "json"
+require 'nokogiri'
+require 'open-uri'
+require 'uri'
 
 require "metainspector"
 require "jekyll-linkpreview/version"
@@ -10,14 +13,17 @@ module Jekyll
       def get(url)
         og_properties = fetch(url)
         og_url = get_og_property(og_properties, 'og:url')
-        domain = extract_domain(og_url)
-        image_url = get_og_property(og_properties, 'og:image')
+        og_image = get_og_property(og_properties, 'og:image')
+        uri_scheme = get_uri_scheme(og_url)
+        uri_host = get_uri_host(og_url)
+        nog_image = get_nog_image(uri_scheme, uri_host)
         {
           'title'       => get_og_property(og_properties, 'og:title'),
           'url'         => og_url,
-          'image'       => convert_to_absolute_url(image_url, domain),
+          'image'       => convert_to_absolute_url(og_image, uri_scheme, uri_host),
           'description' => get_og_property(og_properties, 'og:description'),
-          'domain'      => domain
+          'domain'      => uri_host,
+          'nog_image'   => convert_to_absolute_url(nog_image,  uri_scheme, uri_host)
         }
       end
 
@@ -35,27 +41,55 @@ module Jekyll
       end
 
       private
-      def convert_to_absolute_url(url, domain)
+      def convert_to_absolute_url(url, uri_schme, uri_host)
         if url.nil? then
           return nil
         end
         # root relative url
-        if url[0] == '/' then
-          return "//#{domain}#{url}"
+        if url[0] == '/' && url[1] != '/' then
+          return "#{uri_schme}://#{uri_host}#{url}"
+        end
+        if url[0] == '/' && url[1] == '/' then
+          return "#{uri_schme}:#{url}"
         end
         url
       end
 
       private
-      def extract_domain(url)
+      def get_uri_scheme(url)
         if url.nil? then
           return nil
         end
-        m = url.match(%r{(http|https)://([^/]+).*})
+        uri = URI.parse(URI.escape(url))
+        m = uri.scheme
         if m.nil? then
           return nil
         end
-        m[-1]
+        m
+      end
+
+      private
+      def get_uri_host(url)
+        if url.nil? then
+          return nil
+        end
+        uri = URI.parse(URI.escape(url))
+        m = uri.host
+        if m.nil? then
+          return nil
+        end
+        m
+      end
+
+      private
+      def get_nog_image(uri_schme, uri_host)
+        image = nil
+        doc = Nokogiri::HTML(open(uri_schme + "://" + uri_host))
+        doc.css('img').each_with_index do |item|
+          image = item['src']
+          break
+        end
+        return image
       end
     end
 
@@ -75,9 +109,14 @@ module Jekyll
         image       = properties['image']
         description = properties['description']
         domain      = properties['domain']
+        nog_image   = properties['nog_image']
+
+        if image.nil? && !nog_image.nil? then
+          image = nog_image
+        end
 
         if title.nil? || image.nil? || domain.nil? then
-          render_linkpreview_nog(context, url)
+          render_linkpreview_nog(context, url, title, description, domain)
         else
           render_linkpreview_og(context, url, title, image, description, domain)
         end
@@ -123,7 +162,6 @@ module Jekyll
         else
           html = <<-EOS
 <div class="jekyll-linkpreview-wrapper">
-  <p><a href="#{url}" target="_blank">#{url}</a></p>
   <div class="jekyll-linkpreview-wrapper-inner">
     <div class="jekyll-linkpreview-content">
       <div class="jekyll-linkpreview-image">
@@ -132,7 +170,7 @@ module Jekyll
         </a>
       </div>
       <div class="jekyll-linkpreview-body">
-        <h2 class="jekyll-linkpreview-title">
+        <h2 class="jekyll-linkpreview-title no_toc">
           <a href="#{url}" target="_blank">#{title}</a>
         </h2>
         <div class="jekyll-linkpreview-description">#{description}</div>
@@ -149,18 +187,30 @@ EOS
       end
 
       private
-      def render_linkpreview_nog(context, url)
+      def render_linkpreview_nog(context, url, title, description, domain)
         template_path = get_linkpreview_nog_template()
         if File.exist?(template_path)
           template_file = File.read template_path
           site = context.registers[:site]
-          template_file = (Liquid::Template.parse template_file).render site.site_payload.merge!({"link_url" => url})
+          template_file = (Liquid::Template.parse template_file).render site.site_payload.merge!({"link_url" => url, "link_title" => title, "link_description" => description, "link_domain" => domain})
         else
           html = <<-EOS
 <div class="jekyll-linkpreview-wrapper">
-  <p><a href="#{url}" target="_blank">#{url}</a></p>
+  <div class="jekyll-linkpreview-wrapper-inner">
+    <div class="jekyll-linkpreview-content">
+      <div class="jekyll-linkpreview-body">
+        <h2 class="jekyll-linkpreview-title no_toc">
+          <a href="#{url}" target="_blank">#{title}</a>
+        </h2>
+        <div class="jekyll-linkpreview-description">#{description}</div>
+      </div>
+    </div>
+    <div class="jekyll-linkpreview-footer">
+      <a href="//#{domain}" target="_blank">#{domain}</a>
+    </div>
+  </div>
 </div>
-          EOS
+EOS
           html
         end
       end
