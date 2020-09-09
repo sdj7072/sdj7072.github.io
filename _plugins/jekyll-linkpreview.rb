@@ -144,7 +144,6 @@ module Jekyll
         else
           html = <<-EOS
 <div class="jekyll-linkpreview-wrapper">
-  <p><a href="#{url}" target="_blank">#{url}</a></p>
   <div class="jekyll-linkpreview-wrapper-inner">
     <div class="jekyll-linkpreview-content">
       <div class="jekyll-linkpreview-image">
@@ -153,9 +152,9 @@ module Jekyll
         </a>
       </div>
       <div class="jekyll-linkpreview-body">
-        <h2 class="jekyll-linkpreview-title">
+        <p class="jekyll-linkpreview-title">
           <a href="#{url}" target="_blank">#{title}</a>
-        </h2>
+        </p>
         <div class="jekyll-linkpreview-description">#{description}</div>
       </div>
     </div>
@@ -179,13 +178,12 @@ EOS
         else
           html = <<-EOS
 <div class="jekyll-linkpreview-wrapper">
-  <p><a href="#{url}" target="_blank">#{url}</a></p>
   <div class="jekyll-linkpreview-wrapper-inner">
     <div class="jekyll-linkpreview-content">
       <div class="jekyll-linkpreview-body">
-        <h2 class="jekyll-linkpreview-title">
+        <p class="jekyll-linkpreview-title">
           <a href="#{url}" target="_blank">#{title}</a>
-        </h2>
+        </p>
         <div class="jekyll-linkpreview-description">#{description}</div>
       </div>
     </div>
