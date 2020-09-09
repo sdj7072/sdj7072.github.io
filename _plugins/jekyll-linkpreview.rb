@@ -1,7 +1,5 @@
 require "digest"
 require "json"
-require 'nokogiri'
-require 'open-uri'
 require 'uri'
 
 require "metainspector"
@@ -11,19 +9,16 @@ module Jekyll
   module Linkpreview
     class OpenGraphProperties
       def get(url)
-        og_properties = fetch(url)
+        page = fetch(url)
+        og_properties = page.meta_tags['property']
         og_url = get_og_property(og_properties, 'og:url')
-        og_image = get_og_property(og_properties, 'og:image')
-        uri_scheme = get_uri_scheme(og_url)
-        uri_host = get_uri_host(og_url)
-        nog_image = get_nog_image(uri_scheme, uri_host)
+        image_url = get_og_property(og_properties, 'og:image')
         {
           'title'       => get_og_property(og_properties, 'og:title'),
           'url'         => og_url,
-          'image'       => convert_to_absolute_url(og_image, uri_scheme, uri_host),
+          'image'       => convert_to_absolute_url(image_url, page.root_url),
           'description' => get_og_property(og_properties, 'og:description'),
-          'domain'      => uri_host,
-          'nog_image'   => convert_to_absolute_url(nog_image,  uri_scheme, uri_host)
+          'domain'      => page.host
         }
       end
 
@@ -32,64 +27,50 @@ module Jekyll
         if !properties.key? key then
           return nil
         end
-        properties[key][0]
+        properties[key].first
       end
 
       private
       def fetch(url)
-        MetaInspector.new(url).meta_tags['property']
+        MetaInspector.new(url)
       end
 
       private
-      def convert_to_absolute_url(url, uri_schme, uri_host)
+      def convert_to_absolute_url(url, domain)
         if url.nil? then
           return nil
         end
         # root relative url
-        if url[0] == '/' && url[1] != '/' then
-          return "#{uri_schme}://#{uri_host}#{url}"
-        end
-        if url[0] == '/' && url[1] == '/' then
-          return "#{uri_schme}:#{url}"
+        if url[0] == '/' then
+          return URI.join(domain, url).to_s
         end
         url
       end
+    end
 
-      private
-      def get_uri_scheme(url)
-        if url.nil? then
-          return nil
-        end
-        uri = URI.parse(URI.escape(url))
-        m = uri.scheme
-        if m.nil? then
-          return nil
-        end
-        m
+    class NonOpenGraphProperties
+      def get(url)
+        page = fetch(url)
+        {
+          'title'       => page.title,
+          'url'         => page.url,
+          'description' => get_description(page),
+          'domain'      => page.root_url
+        }
       end
 
       private
-      def get_uri_host(url)
-        if url.nil? then
-          return nil
-        end
-        uri = URI.parse(URI.escape(url))
-        m = uri.host
-        if m.nil? then
-          return nil
-        end
-        m
+      def fetch(url)
+        MetaInspector.new(url)
       end
 
       private
-      def get_nog_image(uri_schme, uri_host)
-        image = nil
-        doc = Nokogiri::HTML(open(uri_schme + "://" + uri_host))
-        doc.css('img').each_with_index do |item|
-          image = item['src']
-          break
+      def get_description(page)
+        if !page.parsed.xpath('//p[normalize-space()]').empty? then
+          return page.parsed.xpath('//p[normalize-space()]').map(&:text).first[0..180] + "..."
+        else
+          return "..."
         end
-        return image
       end
     end
 
@@ -100,6 +81,7 @@ module Jekyll
         super
         @markup = markup.strip()
         @og_properties = OpenGraphProperties.new
+        @nog_properties = NonOpenGraphProperties.new
       end
 
       def render(context)
@@ -109,13 +91,8 @@ module Jekyll
         image       = properties['image']
         description = properties['description']
         domain      = properties['domain']
-        nog_image   = properties['nog_image']
 
-        if image.nil? && !nog_image.nil? then
-          image = nog_image
-        end
-
-        if title.nil? || image.nil? || domain.nil? then
+        if !image then
           render_linkpreview_nog(context, url, title, description, domain)
         else
           render_linkpreview_og(context, url, title, image, description, domain)
@@ -127,7 +104,12 @@ module Jekyll
         if File.exist?(cache_filepath) then
           return load_cache_file(cache_filepath)
         end
-        properties = @og_properties.get(url)
+        meta = MetaInspector.new(url).meta_tags['property']
+        if meta.empty? then
+          properties = @nog_properties.get(url)
+        else
+          properties = @og_properties.get(url)
+        end
         if Dir.exists?(@@cache_dir) then
           save_cache_file(cache_filepath, properties)
         else
@@ -162,6 +144,7 @@ module Jekyll
         else
           html = <<-EOS
 <div class="jekyll-linkpreview-wrapper">
+  <p><a href="#{url}" target="_blank">#{url}</a></p>
   <div class="jekyll-linkpreview-wrapper-inner">
     <div class="jekyll-linkpreview-content">
       <div class="jekyll-linkpreview-image">
@@ -170,14 +153,14 @@ module Jekyll
         </a>
       </div>
       <div class="jekyll-linkpreview-body">
-        <h2 class="jekyll-linkpreview-title no_toc">
+        <h2 class="jekyll-linkpreview-title">
           <a href="#{url}" target="_blank">#{title}</a>
         </h2>
         <div class="jekyll-linkpreview-description">#{description}</div>
       </div>
     </div>
     <div class="jekyll-linkpreview-footer">
-      <a href="//#{domain}" target="_blank">#{domain}</a>
+      <a href="#{domain}" target="_blank">#{domain}</a>
     </div>
   </div>
 </div>
@@ -196,17 +179,18 @@ EOS
         else
           html = <<-EOS
 <div class="jekyll-linkpreview-wrapper">
+  <p><a href="#{url}" target="_blank">#{url}</a></p>
   <div class="jekyll-linkpreview-wrapper-inner">
     <div class="jekyll-linkpreview-content">
       <div class="jekyll-linkpreview-body">
-        <h2 class="jekyll-linkpreview-title no_toc">
+        <h2 class="jekyll-linkpreview-title">
           <a href="#{url}" target="_blank">#{title}</a>
         </h2>
         <div class="jekyll-linkpreview-description">#{description}</div>
       </div>
     </div>
     <div class="jekyll-linkpreview-footer">
-      <a href="//#{domain}" target="_blank">#{domain}</a>
+      <a href="#{domain}" target="_blank">#{domain}</a>
     </div>
   </div>
 </div>
