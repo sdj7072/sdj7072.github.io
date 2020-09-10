@@ -76,24 +76,38 @@ _cache 폴더에 생성된 json 파일을 Push/Pull 하지 않도록 .gitignore 
 _cache/
 ```
 
-### b.linkpreview.rb 수정
-linkpreview를 적용하면 미리보기 위에 url이 표시되는 것을 볼 수 있습니다.
+### b.Custom template
+linkpreview를 적용하면 미리보기 위에 url이 표시되는 것을 볼 수 있습니다. 상단의 url을 지우기 위해 Custom template을 적용해 봅시다.
 
 ![20200909-02]({{ site.url }}{{ site.baseurl }}/assets/images/2020/09/20200909-02.png){: .rcorners .shadow}
 
-파일에서 해당 부분을 삭제하여 미리보기 영역만 표시되게 수정하겠습니다.
-```
-<p><a href="#{url}" target="_blank">#{url}</a></p>
+`_includes` 폴더에 `linkpreview.html`과 `linkpreview_nog.html` 파일을 생성하여 디자인을 수정할 수 있습니다.
+
+`linkpreview.html`
+```html
+<div class="jekyll-linkpreview-wrapper">
+  <div class="jekyll-linkpreview-wrapper-inner">
+    <div class="jekyll-linkpreview-content">
+      <div class="jekyll-linkpreview-image">
+        <a href="{{ link_url }}" target="_blank">
+          <img src="{{ link_image }}" />
+        </a>
+      </div>
+      <div class="jekyll-linkpreview-body">
+        <div class="jekyll-linkpreview-title">
+          <a href="#{url}" target="_blank">{{ link_title }}</a>
+        </div>
+        <div class="jekyll-linkpreview-description">{{ link_description }}</div>
+      </div>
+    </div>
+    <div class="jekyll-linkpreview-footer">
+      <a href="#{domain}" target="_blank">{{ link_domain }}</a>
+    </div>
+  </div>
+</div>
 ```
 
-linkpreview 내부에서 'H2' HTML Tag를 사용하고 있어 TOC가 지저분하게 변합니다. 'P' Tag로 수정합니다.
-```
-<p class="jekyll-linkpreview-title">
-  <a href="#{url}" target="_blank">#{title}</a>
-</p>
-```
-
-수정까지 완료되었습니다. 변경 내용은 [Commit ID : ca9f311](https://github.com/sdj7072/sdj7072.github.io/commit/ca9f3110506887848124abbe7c593856a25889bb)을 참고해주세요.
+수정까지 완료되었습니다. 변경 내용은 [Commit ID : c8979c0](https://github.com/sdj7072/sdj7072.github.io/commit/c8979c0e98269ccc65fbbe5586141a1ebaffd6a2)을 참고해주세요.
 
 
 ## 4.Open Graph Protocol
