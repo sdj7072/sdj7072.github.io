@@ -2,7 +2,7 @@
 title: Github Dependabot alerts 해결하기
 date: '2020-09-09 00:27'
 categories:
-  - GitHub Pages
+  - GitHubPages
 tags:
   - Github Dependabot alerts
 toc: true

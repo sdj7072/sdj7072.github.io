@@ -2,7 +2,7 @@
 title: .gitignore File 설정하기
 date: '2020-03-10 23:58'
 categories:
-  - GitHub Pages
+  - GitHubPages
 tags:
   - .gitignore
 ---

@@ -13,7 +13,7 @@ GitHub Pages를 구축하고 운영하면서 도움이 될 만한 내용을 정�
 ---
 <div class="entries-{{ page.entries_layout }}">
 
-{%- for post in site.categories['GitHub Pages'] -%}
+{%- for post in site.categories['GitHubPages'] -%}
   {%- unless post.hidden -%}
 
   {% if post.id %}

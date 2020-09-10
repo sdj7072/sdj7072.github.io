@@ -2,7 +2,7 @@
 title: Link Preview 기능 적용하기 - How to apply link preview in Jekyll based on Open Graph Protocol
 date: '2020-09-10 01:14'
 categories:
-  - GitHub Pages
+  - GitHubPages
 tags:
   - Open Graph Protocol
   - Link Preview

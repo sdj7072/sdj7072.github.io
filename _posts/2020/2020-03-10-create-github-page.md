@@ -2,7 +2,7 @@
 title: GitHub Pages 만들기
 date: '2020-03-10 17:59'
 categories:
-  - GitHub Pages
+  - GitHubPages
 tags:
   - Jekyll
   - Minimal Mistakes

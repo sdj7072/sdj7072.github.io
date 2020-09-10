@@ -2,7 +2,7 @@
 title: Google Search Console과 Analytics 적용하기
 date: '2020-03-26 01:22'
 categories:
-  - GitHub Pages
+  - GitHubPages
 tags:
   - Google Marketing Platform
   - Google Search Console

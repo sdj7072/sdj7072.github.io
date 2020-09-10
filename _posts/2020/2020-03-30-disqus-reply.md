@@ -2,7 +2,7 @@
 title: DISQUS를 이용한 댓글 기능 설정하기
 date: '2020-03-30 00:20'
 categories:
-  - GitHub Pages
+  - GitHubPages
 tags:
   - DISQUS
   - GitHub Pages 댓글 설정

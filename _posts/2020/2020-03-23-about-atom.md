@@ -2,7 +2,7 @@
 title: Atom으로 Markdown Document 작성하기
 date: '2020-03-23 15:31'
 categories:
-  - GitHub Pages
+  - GitHubPages
 tags:
   - ATOM
   - Markdown
