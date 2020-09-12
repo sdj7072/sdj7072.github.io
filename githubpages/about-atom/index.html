@@ -1,0 +1,685 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.18.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Atom으로 Markdown Document 작성하기 - Star Seeker</title>
+<meta name="description" content="방문자가 필요한 정보를 얻기 위해 검색을 하고 글을 읽거나 영상을 보는데 소모하는 시간은, 정보를 가공하여 Post를 만들어내는 작성자의 수고로움에 비하면 찰나지간에 불과합니다. 게다가 대부분의 정보는 이미 누군가 앞서(그리고 더욱 정성스럽게) Posting 했습니다. 그럼에도 불구하고 글을 쓴다는 행위는 중요하고 존중받아야 합니다. 글을 작성하는데 집중하게 해줄 도구도 중요하겠죠. GitHub Page를 편하게 다루기 위해 Text Editor 중 하나인 ATOM을 소개합니다. ">
+
+
+  <meta name="author" content="J. Seo">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Star Seeker">
+<meta property="og:title" content="Atom으로 Markdown Document 작성하기">
+<meta property="og:url" content="/githubpages/about-atom/">
+
+
+  <meta property="og:description" content="방문자가 필요한 정보를 얻기 위해 검색을 하고 글을 읽거나 영상을 보는데 소모하는 시간은, 정보를 가공하여 Post를 만들어내는 작성자의 수고로움에 비하면 찰나지간에 불과합니다. 게다가 대부분의 정보는 이미 누군가 앞서(그리고 더욱 정성스럽게) Posting 했습니다. 그럼에도 불구하고 글을 쓴다는 행위는 중요하고 존중받아야 합니다. 글을 작성하는데 집중하게 해줄 도구도 중요하겠죠. GitHub Page를 편하게 다루기 위해 Text Editor 중 하나인 ATOM을 소개합니다. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-03-23T15:31:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/githubpages/about-atom/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "J. Seo",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Star Seeker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<script data-ad-client="ca-pub-4712767609934402" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Star Seeker
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/GitHub%20Pages/">GitHub Pages</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">J. Seo</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Try Everything.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">대한민국 (South Korea)</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sdj7072@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Gmail</a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/sdj7072" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Atom으로 Markdown Document 작성하기">
+    <meta itemprop="description" content="방문자가 필요한 정보를 얻기 위해 검색을 하고 글을 읽거나 영상을 보는데 소모하는 시간은, 정보를 가공하여 Post를 만들어내는 작성자의 수고로움에 비하면 찰나지간에 불과합니다. 게다가 대부분의 정보는 이미 누군가 앞서(그리고 더욱 정성스럽게) Posting 했습니다. 그럼에도 불구하고 글을 쓴다는 행위는 중요하고 존중받아야 합니다. 글을 작성하는데 집중하게 해줄 도구도 중요하겠죠. GitHub Page를 편하게 다루기 위해 Text Editor 중 하나인 ATOM을 소개합니다.">
+    <meta itemprop="datePublished" content="2020-03-23T15:31:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Atom으로 Markdown Document 작성하기
+</h1>
+          <!--
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  최대 1 분 소요
+
+</p>
+          
+          -->
+          
+            <p class="page__date"><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트: <time datetime="2020-03-23T15:31:00+09:00">March 23, 2020</time></p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Atom으로 Markdown Document 만들기</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-atom">1. ATOM</a>
+    <ul>
+      <li><a href="#a-homepage">a. Homepage</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+            <nav class="toc__ads">
+              
+                <ins class="kakao_ad_area" style="display:none;"
+    data-ad-unit    = "DAN-1jifkxxnjr8tf"
+    data-ad-width   = "160"
+    data-ad-height  = "600"></ins>
+<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+
+              
+            </nav>
+          </aside>
+        
+        <p>방문자가 필요한 정보를 얻기 위해 검색을 하고 글을 읽거나 영상을 보는데 소모하는 시간은, 정보를 가공하여 Post를 만들어내는 작성자의 수고로움에 비하면 찰나지간에 불과합니다. 게다가 대부분의 정보는 이미 누군가 앞서(그리고 더욱 정성스럽게) Posting 했습니다. 그럼에도 불구하고 글을 쓴다는 행위는 중요하고 존중받아야 합니다. 글을 작성하는데 집중하게 해줄 도구도 중요하겠죠. GitHub Page를 편하게 다루기 위해 Text Editor 중 하나인 ATOM을 소개합니다.</p>
+
+<h2 id="1-atom">1. ATOM</h2>
+<h3 id="a-homepage">a. Homepage</h3>
+<ul>
+  <li><a href="https://atom.io">atom.io</a></li>
+  <li>A hackable text editor for the 21st Century</li>
+</ul>
+
+<p>Slogan</p>
+
+<p><img src="/assets/images/2020/03/23-01-01.png" alt="23-01-01" class="rcorners shadow" /></p>
+
+<p><img src="/assets/images/2020/03/23-01-02.png" alt="23-01-02" /></p>
+
+<p><img src="/assets/images/2020/03/23-01-03.png" alt="23-01-03" /></p>
+
+<p><img src="/assets/images/2020/03/23-01-04.png" alt="23-01-04" /></p>
+
+<p><img src="/assets/images/2020/03/23-01-05.png" alt="23-01-05" /></p>
+
+<p><img src="/assets/images/2020/03/23-01-06.png" alt="23-01-06" /></p>
+
+<p><img src="/assets/images/2020/03/23-01-07.png" alt="23-01-07" class="shadow rcorners" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#atom" class="page__taxonomy-item" rel="tag">ATOM</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#markdown" class="page__taxonomy-item" rel="tag">Markdown</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#githubpages" class="page__taxonomy-item" rel="tag">GitHubPages</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2020-03-23T15:31:00+09:00">March 23, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Atom%EC%9C%BC%EB%A1%9C+Markdown+Document+%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0%20%2Fgithubpages%2Fabout-atom%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fgithubpages%2Fabout-atom%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fgithubpages%2Fabout-atom%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/githubpages/gitignore/" class="pagination--pager" title=".gitignore File 설정하기
+">이전</a>
+    
+    
+      <a href="/mac/macbook-ram-upgrade/" class="pagination--pager" title="MacBook RAM Upgrade
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    /githubpages/about-atom/ aa
+     dd
+    <h4 class="page__comments-title"></h4>
+    <section id="disqus_thread"></section>
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/githubpages/link-preview-lib/" rel="permalink">Link Preview 기능 적용하기 - How to apply link preview in Jekyll based on Open Graph Protocol
+</a>
+      
+    </h2>
+    <!--
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 분 소요
+
+</p>
+    
+    -->
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> September 10 2020</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Link(URL)를 표현하는 방식이 변화하고 있습니다. 사실은 이미 바뀌었죠. 굳이 비교하자면 CLI에서 GUI 환경으로 진화하고 있다고 봐도 좋을것 같습니다.(단순하게 표현하자면 미리보기?!) 이번 Posting에서는 Plugin을 추가하여 Link Preview 기능을 적용해 ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/githubpages/github-dependabot-alerts/" rel="permalink">Github Dependabot alerts 해결하기
+</a>
+      
+    </h2>
+    <!--
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  최대 1 분 소요
+
+</p>
+    
+    -->
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> September 09 2020</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Jekyll Theme 중 하나인 ‘minimal-mistakes’는 매우 대중적이고 활성화된 만큼, 많은 의존성을 갖고 있습니다. Github에서 제공하는 Dependabot alerts에서 제공하는 기능을 통해 보안 취약점이 존재하는 각종 라이브러리의 버전 업데이트를 안내받을 ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/review/review-tomtoc/" rel="permalink">[Review] Tomtoc Sleeve for MacBook Pro (탐탁 맥북 파우치)
+</a>
+      
+    </h2>
+    <!--
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 분 소요
+
+</p>
+    
+    -->
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> April 02 2020</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">MacBook은 고가의 제품입니다. MacBook의 휴대성은 노트북 중에서도 준수한 편이나 이곳 저곳 들고 다니기에 불안한 것도 사실입니다. 게다가 액세서리도 비쌉니다. MacBook을 사용할수록 ‘편하게, 안심할 수 있게.’ 보관하고 휴대할 수 있는 파우치의 필요성을 느끼게 되었...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/githubpages/disqus-reply/" rel="permalink">DISQUS를 이용한 댓글 기능 설정하기
+</a>
+      
+    </h2>
+    <!--
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 분 소요
+
+</p>
+    
+    -->
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 30 2020</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">GitHub Pages를 구축하면서 많은 고민을 하게 되었습니다. 아마 Blog를 운영하시는 다른 분들도 비슷한 고민과 나름의 해결책을 갖고 계시리라 짐작됩니다. 머릿속에 쌓여있던 고민을 정리하니 세 묶음 정도로 구분됩니다.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 J. Seo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161685945-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-161685945-1', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://sdj7072.github.io";
+      //this.page.url = "/githubpages/about-atom/";
+      /* Replace PAGE_URL with your page's       canonical URL variable */
+      this.page.identifier = "/githubpages/about-atom"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sdj7072-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

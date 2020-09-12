@@ -1,0 +1,814 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.18.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Link Preview 기능 적용하기 - How to apply link preview in Jekyll based on Open Graph Protocol - Star Seeker</title>
+<meta name="description" content="Link(URL)를 표현하는 방식이 변화하고 있습니다. 사실은 이미 바뀌었죠. 굳이 비교하자면 CLI에서 GUI 환경으로 진화하고 있다고 봐도 좋을것 같습니다.(단순하게 표현하자면 미리보기?!) 이번 Posting에서는 Plugin을 추가하여 Link Preview 기능을 적용해 봅니다. 짜잔~! ">
+
+
+  <meta name="author" content="J. Seo">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Star Seeker">
+<meta property="og:title" content="Link Preview 기능 적용하기 - How to apply link preview in Jekyll based on Open Graph Protocol">
+<meta property="og:url" content="/githubpages/link-preview-lib/">
+
+
+  <meta property="og:description" content="Link(URL)를 표현하는 방식이 변화하고 있습니다. 사실은 이미 바뀌었죠. 굳이 비교하자면 CLI에서 GUI 환경으로 진화하고 있다고 봐도 좋을것 같습니다.(단순하게 표현하자면 미리보기?!) 이번 Posting에서는 Plugin을 추가하여 Link Preview 기능을 적용해 봅니다. 짜잔~! ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-09-10T01:14:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/githubpages/link-preview-lib/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "J. Seo",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Star Seeker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<script data-ad-client="ca-pub-4712767609934402" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Star Seeker
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/GitHub%20Pages/">GitHub Pages</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">J. Seo</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Try Everything.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">대한민국 (South Korea)</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sdj7072@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Gmail</a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/sdj7072" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Link Preview 기능 적용하기 - How to apply link preview in Jekyll based on Open Graph Protocol">
+    <meta itemprop="description" content="Link(URL)를 표현하는 방식이 변화하고 있습니다. 사실은 이미 바뀌었죠. 굳이 비교하자면 CLI에서 GUI 환경으로 진화하고 있다고 봐도 좋을것 같습니다.(단순하게 표현하자면 미리보기?!) 이번 Posting에서는 Plugin을 추가하여 Link Preview 기능을 적용해 봅니다. 짜잔~!">
+    <meta itemprop="datePublished" content="2020-09-10T01:14:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Link Preview 기능 적용하기 - How to apply link preview in Jekyll based on Open Graph Protocol
+</h1>
+          <!--
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 분 소요
+
+</p>
+          
+          -->
+          
+            <p class="page__date"><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트: <time datetime="2020-09-10T01:14:00+09:00">September 10, 2020</time></p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1jekyll-linkpreview">1.jekyll-linkpreview</a>
+    <ul>
+      <li><a href="#a폴더-생성">a.폴더 생성</a></li>
+      <li><a href="#blibrary-install">b.Library install</a></li>
+      <li><a href="#ccss-import">c.CSS import</a></li>
+    </ul>
+  </li>
+  <li><a href="#2tag-사용-방법">2.Tag 사용 방법</a></li>
+  <li><a href="#3customize">3.Customize</a>
+    <ul>
+      <li><a href="#agitignore-수정">a..gitignore 수정</a></li>
+      <li><a href="#bcustom-template">b.Custom template</a></li>
+    </ul>
+  </li>
+  <li><a href="#4open-graph-protocol">4.Open Graph Protocol</a></li>
+</ul>
+
+            </nav>
+            <nav class="toc__ads">
+              
+                <ins class="kakao_ad_area" style="display:none;"
+    data-ad-unit    = "DAN-1jifkxxnjr8tf"
+    data-ad-width   = "160"
+    data-ad-height  = "600"></ins>
+<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+
+              
+            </nav>
+          </aside>
+        
+        <p>Link(URL)를 표현하는 방식이 변화하고 있습니다. 사실은 이미 바뀌었죠. 굳이 비교하자면 CLI에서 GUI 환경으로 진화하고 있다고 봐도 좋을것 같습니다.(단순하게 표현하자면 미리보기?!) 이번 Posting에서는 Plugin을 추가하여 Link Preview 기능을 적용해 봅니다. 짜잔~!</p>
+
+<div class="jekyll-linkpreview-wrapper">
+  <div class="jekyll-linkpreview-wrapper-inner">
+    <div class="jekyll-linkpreview-content">
+      <div class="jekyll-linkpreview-image">
+        <a href="https://www.github.com" target="_blank">
+          <img src="https://github.githubassets.com/images/modules/open_graph/github-logo.png" />
+        </a>
+      </div>
+      <div class="jekyll-linkpreview-body">
+        <div class="jekyll-linkpreview-title">
+          <a href="#{url}" target="_blank">Build software better, together</a>
+        </div>
+        <div class="jekyll-linkpreview-description">GitHub is where people build software. More than 50 million people use GitHub to discover, fork, and contribute to over 100 million projects.</div>
+      </div>
+    </div>
+    <div class="jekyll-linkpreview-footer">
+      <a href="#{domain}" target="_blank">github.com</a>
+    </div>
+  </div>
+</div>
+
+<h2 id="1jekyll-linkpreview">1.jekyll-linkpreview</h2>
+<p><a href="https://github.com/ysk24ok/jekyll-linkpreview">jekyll-linkpreview</a>는 Facebook에서 제정한 Open Graph Protocol을 기반으로 link preview를 생성하는 Jekyll plugin 입니다. URL을 작성하면 아래와 같이 미리보기가 생성됩니다. Open Graph Protocol에 대해서는 마지막에 기술하고, 우선 어떻게 적용 하였는지 살펴봅시다. 전체 변경 내용은 <a href="https://github.com/sdj7072/sdj7072.github.io/commit/e33d4fac7d41446b4cc7d36965a303e9fbae14e9">Commit ID : e33d4fa</a>를 보시면 됩니다.(플러그인을 수정한 이력이 있어서 보기 좀 지저분하네요.)</p>
+
+<h3 id="a폴더-생성">a.폴더 생성</h3>
+<p>root 경로에 ‘_cache’, ‘_plugins’ 폴더를 생성합니다.</p>
+<ul>
+  <li>_cache : Open Graph Protocol을 기반으로 수집한 정보의 Cache 입니다. json 형태로 저장됩니다.</li>
+  <li>_plugins : jekyll-linkpreview plugin을 설치하기 위한 폴더입니다.</li>
+</ul>
+
+<h3 id="blibrary-install">b.Library install</h3>
+<ul>
+  <li>Jekyll plugin 설치에 관한 기본적인 내용은 <a href="https://jekyllrb-ko.github.io/docs/plugins/installation/">Jekyll DOCS</a>를 참고하세요.</li>
+</ul>
+
+<p>먼저, <a href="https://github.com/ysk24ok/jekyll-linkpreview/tree/master/lib">jekyll-linkpreview/lib</a>에서 ‘jekyll-linkpreview.rb’ 파일을 받아 ‘_plugins’ 폴더에 넣고, Gemfile을 수정합니다. 기존에 설치한 플러그인이 있다면 gem ‘jekyll-linkpreview’ 항목을 추가하면 됩니다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source "https://rubygems.org"
+
+gemspec
+
+group :jekyll_plugins do
+  gem 'jekyll-linkpreview', '~&gt; 0.3.1'
+
+end
+</code></pre></div></div>
+
+<p>Gemfile 수정까지 완료되면, 터미널에서 bundle install을 수행합니다.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/2020/09/20200909-01.png" alt="20200909-01" class="rcorners shadow" /></p>
+
+<p>jekyll-linkpreview 0.3.2 버전이 설치된 것을 확인할 수 있습니다.</p>
+
+<h3 id="ccss-import">c.CSS import</h3>
+<p>이어서 css 파일을 가져오면 모든 준비가 완료되었습니다.
+<a href="https://github.com/ysk24ok/jekyll-linkpreview/tree/master/assets/css">jekyll-linkprevew/css</a>에서 ‘linkpreview.css’ 파일을 가져옵니다. minimal-mistakes 테마를 기준으로 ‘/_sass/minimal-mistakes/’ 경로 입니다. 이어서 ‘minimal-mistakes.scss’ 파일을 열어 ‘linkpreview.css’ 파일을 import 합니다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@import "minimal-mistakes/linkpreview";
+</code></pre></div></div>
+<ul>
+  <li>확장자를 css 에서 scss로 바꿔주면 Github Pages Build failed 메시지가 발생하지 않습니다. <a href="https://github.com/sdj7072/sdj7072.github.io/commit/5231a257a181a20f3649fbd5d2d848ab2dc7d781">Commit ID : 5231a25</a>를 참고하세요.</li>
+</ul>
+
+<h2 id="2tag-사용-방법">2.Tag 사용 방법</h2>
+
+<p><code class="language-plaintext highlighter-rouge">{</code>% linkpreview “https://sdj7072.github.io” %<code class="language-plaintext highlighter-rouge">}</code></p>
+
+<p>위와 같이 표현하면 됩니다. 중괄호({})와 퍼센트(%) 사이의 공백은 지워주셔야 합니다. Open Graph Protocol을 준수하는 사이트는 깔끔하게 표시됩니다.</p>
+
+<div class="jekyll-linkpreview-wrapper">
+  <div class="jekyll-linkpreview-wrapper-inner">
+    <div class="jekyll-linkpreview-content">
+      <div class="jekyll-linkpreview-image">
+        <a href="https://www.naver.com" target="_blank">
+          <img src="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png" />
+        </a>
+      </div>
+      <div class="jekyll-linkpreview-body">
+        <div class="jekyll-linkpreview-title">
+          <a href="#{url}" target="_blank">네이버</a>
+        </div>
+        <div class="jekyll-linkpreview-description">네이버 메인에서 다양한 정보와 유용한 컨텐츠를 만나 보세요</div>
+      </div>
+    </div>
+    <div class="jekyll-linkpreview-footer">
+      <a href="#{domain}" target="_blank">www.naver.com</a>
+    </div>
+  </div>
+</div>
+
+<h2 id="3customize">3.Customize</h2>
+<h3 id="agitignore-수정">a..gitignore 수정</h3>
+<p>_cache 폴더에 생성된 json 파일을 Push/Pull 하지 않도록 .gitignore 파일을 수정합니다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_cache/
+</code></pre></div></div>
+
+<h3 id="bcustom-template">b.Custom template</h3>
+<p>linkpreview를 적용하면 미리보기 위에 url이 표시되는 것을 볼 수 있습니다. 상단의 url을 지우기 위해 Custom template을 적용해 봅시다.</p>
+
+<p><img src="/assets/images/2020/09/20200909-02.png" alt="20200909-02" class="rcorners shadow" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">_includes</code> 폴더에 <code class="language-plaintext highlighter-rouge">linkpreview.html</code>과 <code class="language-plaintext highlighter-rouge">linkpreview_nog.html</code> 파일을 생성하여 디자인을 수정할 수 있습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">linkpreview.html</code></p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"jekyll-linkpreview-wrapper"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"jekyll-linkpreview-wrapper-inner"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"jekyll-linkpreview-content"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"jekyll-linkpreview-image"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span> <span class="na">target=</span><span class="s">"_blank"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">""</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"jekyll-linkpreview-body"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"jekyll-linkpreview-title"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#{url}"</span> <span class="na">target=</span><span class="s">"_blank"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"jekyll-linkpreview-description"</span><span class="nt">&gt;&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"jekyll-linkpreview-footer"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#{domain}"</span> <span class="na">target=</span><span class="s">"_blank"</span><span class="nt">&gt;&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>수정까지 완료되었습니다. 변경 내용은 <a href="https://github.com/sdj7072/sdj7072.github.io/commit/c8979c0e98269ccc65fbbe5586141a1ebaffd6a2">Commit ID : c8979c0</a>을 참고해주세요.</p>
+
+<h2 id="4open-graph-protocol">4.Open Graph Protocol</h2>
+<blockquote>
+  <p>The Open Graph protocol enables any web page to become a rich object in a social graph. For instance, this is used on Facebook to allow any web page to have the same functionality as any other object on Facebook.</p>
+</blockquote>
+
+<p><a href="https://ogp.me">OGP</a>에서 발췌한 소개문입니다.(Oger Gauntlet Power…?!) META Tag 규격도 기술되어 있습니다.</p>
+
+<p>페이스북에서 최초로 정의한 메타 태그 규약입니다. 통일된 규격으로 웹 페이지의 정보를 일목요연하게 볼 수 있으며 이는 일반 사용자와 검색 엔진 모두에게 이롭게 사용될 수 있습니다. twitter와 같이 확장된 META Tag를 사용하는 경우도 있습니다.</p>
+
+<p><a href="https://developers.facebook.com/tools/debug/">Facebook 공유 디버거</a>에서 제공하는 도구로 입력하는 url의 Open Graph Protocol을 기반으로 한 미리보기와 META Tag 정보를 확인할 수 있습니다.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#link-preview" class="page__taxonomy-item" rel="tag">Link Preview</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#open-graph-protocol" class="page__taxonomy-item" rel="tag">Open Graph Protocol</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#githubpages" class="page__taxonomy-item" rel="tag">GitHubPages</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2020-09-10T01:14:00+09:00">September 10, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Link+Preview+%EA%B8%B0%EB%8A%A5+%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0+-+How+to+apply+link+preview+in+Jekyll+based+on+Open+Graph+Protocol%20%2Fgithubpages%2Flink-preview-lib%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fgithubpages%2Flink-preview-lib%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fgithubpages%2Flink-preview-lib%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/githubpages/github-dependabot-alerts/" class="pagination--pager" title="Github Dependabot alerts 해결하기
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    /githubpages/link-preview-lib/ aa
+     dd
+    <h4 class="page__comments-title"></h4>
+    <section id="disqus_thread"></section>
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/githubpages/github-dependabot-alerts/" rel="permalink">Github Dependabot alerts 해결하기
+</a>
+      
+    </h2>
+    <!--
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  최대 1 분 소요
+
+</p>
+    
+    -->
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> September 09 2020</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Jekyll Theme 중 하나인 ‘minimal-mistakes’는 매우 대중적이고 활성화된 만큼, 많은 의존성을 갖고 있습니다. Github에서 제공하는 Dependabot alerts에서 제공하는 기능을 통해 보안 취약점이 존재하는 각종 라이브러리의 버전 업데이트를 안내받을 ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/review/review-tomtoc/" rel="permalink">[Review] Tomtoc Sleeve for MacBook Pro (탐탁 맥북 파우치)
+</a>
+      
+    </h2>
+    <!--
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 분 소요
+
+</p>
+    
+    -->
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> April 02 2020</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">MacBook은 고가의 제품입니다. MacBook의 휴대성은 노트북 중에서도 준수한 편이나 이곳 저곳 들고 다니기에 불안한 것도 사실입니다. 게다가 액세서리도 비쌉니다. MacBook을 사용할수록 ‘편하게, 안심할 수 있게.’ 보관하고 휴대할 수 있는 파우치의 필요성을 느끼게 되었...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/githubpages/disqus-reply/" rel="permalink">DISQUS를 이용한 댓글 기능 설정하기
+</a>
+      
+    </h2>
+    <!--
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 분 소요
+
+</p>
+    
+    -->
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 30 2020</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">GitHub Pages를 구축하면서 많은 고민을 하게 되었습니다. 아마 Blog를 운영하시는 다른 분들도 비슷한 고민과 나름의 해결책을 갖고 계시리라 짐작됩니다. 머릿속에 쌓여있던 고민을 정리하니 세 묶음 정도로 구분됩니다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/githubpages/navigation-customize/" rel="permalink">GitHub Pages Navigation 구성하기
+</a>
+      
+    </h2>
+    <!--
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 분 소요
+
+</p>
+    
+    -->
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 29 2020</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Navigation 구성을 입맛에 맞게 수정해 봅시다.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 J. Seo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161685945-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-161685945-1', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://sdj7072.github.io";
+      //this.page.url = "/githubpages/link-preview-lib/";
+      /* Replace PAGE_URL with your page's       canonical URL variable */
+      this.page.identifier = "/githubpages/link-preview-lib"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sdj7072-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
